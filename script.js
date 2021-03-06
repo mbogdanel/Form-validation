@@ -7,7 +7,7 @@ const message = document.getElementById('message')
 let isValid = false
 let passwordsMatch = false
 
-function validateForm() {
+validateForm = () => {
   isValid = form.checkValidity()
 
   if (!isValid) {
@@ -36,10 +36,23 @@ function validateForm() {
   }
 }
 
-function processFormData(e) {
-  e.preventDefault()
-  validateForm()
+storeFormData = () => {
+  const user = {
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value,
+    website: form.website.value,
+    password: form.password.value,
+  }
+  console.log(user)
 }
 
-//Event listener
+processFormData = (e) => {
+  e.preventDefault()
+  validateForm()
+  if (isValid && passwordsMatch) {
+    storeFormData()
+  }
+}
+
 form.addEventListener('submit', processFormData)
